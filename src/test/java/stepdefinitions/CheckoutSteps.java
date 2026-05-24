@@ -89,9 +89,15 @@ public class CheckoutSteps extends BaseClass {
     @Then("order should place successfully")
     public void order_should_place_successfully() {
 
-        String text = driver.getPageSource();
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions.urlContains("payment"));
 
         Assert.assertTrue(
-                text.contains("Payment"));
+                driver.getCurrentUrl()
+                        .contains("payment"));
     }
 }
