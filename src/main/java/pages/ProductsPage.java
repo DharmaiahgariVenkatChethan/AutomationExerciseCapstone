@@ -33,44 +33,78 @@ public class ProductsPage {
 
     @FindBy(xpath="//u[text()='View Cart']")
     WebElement viewCart;
+
+    
     
     @FindBy(xpath="//a[@href='#Women']")
     WebElement womenCategory;
 
     public void searchProduct() {
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
 
         wait.until(
-        ExpectedConditions.visibilityOf(searchBox));
+                ExpectedConditions.visibilityOf(
+                        searchBox));
+
+        searchBox.clear();
 
         searchBox.sendKeys("Tshirt");
 
-        searchButton.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                searchButton);
     }
+
     public void addProduct() {
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
-        js.executeScript("arguments[0].scrollIntoView(true);",addCart);
+        js.executeScript(
+                "window.scrollBy(0,500)");
 
-        js.executeScript("arguments[0].click();",addCart);
+        js.executeScript(
+                "arguments[0].click();",
+                addCart);
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
 
-        wait.until(
-        ExpectedConditions.visibilityOfElementLocated(
-        By.xpath("//u[text()='View Cart']")));
+        WebElement viewCartBtn =
+                wait.until(
+                        ExpectedConditions.visibilityOfElementLocated(
+                                By.xpath("//u[text()='View Cart']")));
 
-        driver.findElement(By.xpath("//u[text()='View Cart']")).click();
+        js.executeScript(
+                "arguments[0].click();",
+                viewCartBtn);
     }
+
     public void selectCategory() {
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
-        js.executeScript("arguments[0].click();",womenCategory);
+        js.executeScript(
+                "window.scrollBy(0,700)");
+
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
+
+        wait.until(
+                ExpectedConditions.visibilityOf(
+                        womenCategory));
+
+        js.executeScript(
+                "arguments[0].click();",
+                womenCategory);
     }
-
-    
 }

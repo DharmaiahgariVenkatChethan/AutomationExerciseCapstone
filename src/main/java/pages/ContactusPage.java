@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class ContactPage {
+public class ContactusPage {
 
     WebDriver driver;
 
-    public ContactPage(WebDriver driver) {
+    public ContactusPage(WebDriver driver) {
 
         this.driver = driver;
 
@@ -31,6 +31,7 @@ public class ContactPage {
 
     @FindBy(name="submit")
     WebElement submit;
+
     @FindBy(name="upload_file")
     WebElement upload;
 
@@ -40,27 +41,45 @@ public class ContactPage {
             String sub,
             String msg) {
 
+        name.clear();
         name.sendKeys(uname);
 
+        email.clear();
         email.sendKeys(mail);
 
+        subject.clear();
         subject.sendKeys(sub);
 
+        message.clear();
         message.sendKeys(msg);
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
-        js.executeScript("arguments[0].scrollIntoView(true);", submit);
-        
+        js.executeScript(
+                "window.scrollBy(0,500)");
 
-        js.executeScript("arguments[0].click();", submit);
-        
-        
+        js.executeScript(
+                "arguments[0].click();",
+                submit);
+
+        try {
+
+            driver.switchTo().alert().accept();
+
+        } catch (Exception e) {
+
+            System.out.println(
+                    "No alert present");
+        }
     }
+
     public void uploadFile() {
 
         upload.sendKeys(
         "C:\\Users\\Chethan\\Downloads\\test.txt");
+
+        System.out.println(
+                "File uploaded successfully");
     }
 }

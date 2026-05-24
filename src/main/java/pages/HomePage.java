@@ -31,32 +31,41 @@ public class HomePage {
 
     public void clickSignupLogin() {
 
-        signupLogin.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                signupLogin);
     }
 
     public void clickProducts() {
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
         js.executeScript(
-        "arguments[0].click();",
-        products);
+                "arguments[0].click();",
+                products);
     }
 
     public void clickCart() {
 
-        PageFactory.initElements(driver, this);
-
         JavascriptExecutor js =
-        (JavascriptExecutor) driver;
+                (JavascriptExecutor) driver;
 
         js.executeScript(
-        "arguments[0].click();",
-        cart);
+                "arguments[0].click();",
+                cart);
     }
 
     public void clickContactUs() {
 
-        contactUs.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                contactUs);
     }
 }

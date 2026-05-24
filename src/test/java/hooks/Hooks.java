@@ -20,13 +20,19 @@ public class Hooks extends BaseClass {
     @Before
     public void launchBrowser(Scenario scenario) {
 
-        test = extent.createTest(scenario.getName());
+        test = extent.createTest(
+                scenario.getName());
 
         setup();
+
+        driver.manage().deleteAllCookies();
+
+        driver.navigate().refresh();
     }
 
     @After
-    public void closeBrowser(Scenario scenario) {
+    public void closeBrowser(
+            Scenario scenario) {
 
         if(scenario.isFailed()) {
 

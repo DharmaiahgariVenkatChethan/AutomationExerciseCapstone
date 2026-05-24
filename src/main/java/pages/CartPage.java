@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,18 +17,30 @@ public class CartPage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath="//i[@class='fa fa-shopping-cart']")
-    WebElement checkout;
+    @FindBy(xpath = "//i[@class='fa fa-times']")
+    WebElement deleteBtn;
+
+
+    @FindBy(xpath="//a[text()='Proceed To Checkout']")
+    WebElement proceedToCheckoutBtn;
 
     public void clickCheckout() {
 
-        checkout.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                proceedToCheckoutBtn);
     }
-    @FindBy(xpath="//a[@class='cart_quantity_delete']")
-    WebElement deleteProduct;
-    
+
     public void removeProduct() {
 
-        deleteProduct.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                deleteBtn);
     }
 }

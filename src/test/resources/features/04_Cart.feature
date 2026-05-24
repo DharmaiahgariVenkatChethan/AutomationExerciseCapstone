@@ -1,3 +1,4 @@
+@cart
 Feature: Cart Module
 
 Scenario: Verify cart page access
@@ -10,10 +11,9 @@ Then cart page should open successfully
 Scenario: Update product quantity
 
 Given user launches automation exercise website
-When user adds product to cart
-And user updates quantity
+When user clicks on Products button
+And user adds product to cart
 Then quantity should update successfully
-
 
 Scenario: Remove product from cart
 

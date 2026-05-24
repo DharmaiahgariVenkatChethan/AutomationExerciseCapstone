@@ -21,6 +21,9 @@ plugin = {
 
 monochrome = true
 
+
+
+
 )
 
 public class TestRunner

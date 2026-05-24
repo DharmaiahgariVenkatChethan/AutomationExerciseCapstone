@@ -1,3 +1,4 @@
+@signup
 Feature: Signup Module
 
 Scenario: Register user with valid details
@@ -27,6 +28,10 @@ Then validation message should display
 Scenario: Verify successful account creation
 
 Given user launches automation exercise website
+
+
 When user clicks on Signup Login button
 And user enters signup details
+And user fill signup details
+And user clicks Create Account button
 Then account should create successfully

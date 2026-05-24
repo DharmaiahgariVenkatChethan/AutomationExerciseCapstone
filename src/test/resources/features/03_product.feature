@@ -1,3 +1,4 @@
+@product
 Feature: Products Module
 
 Scenario: Search products using keyword

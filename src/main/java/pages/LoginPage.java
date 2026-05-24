@@ -2,6 +2,7 @@ package pages;
 
 import java.time.Duration;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,30 +32,49 @@ public class LoginPage {
 
     @FindBy(xpath="//a[contains(text(),'Logged in as')]")
     WebElement loggedInText;
-    
+
     @FindBy(xpath="//a[contains(text(),'Logout')]")
     WebElement logout;
 
     public void login(String mail, String pwd) {
 
+        email.clear();
         email.sendKeys(mail);
 
+        password.clear();
         password.sendKeys(pwd);
 
-        loginButton.click();
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
+
+        js.executeScript(
+                "arguments[0].click();",
+                loginButton);
     }
+
     public boolean verifyLogin() {
 
-        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        WebDriverWait wait =
+                new WebDriverWait(driver,
+                        Duration.ofSeconds(10));
 
-        wait.until(ExpectedConditions.urlContains("automationexercise"));
+        wait.until(
+                ExpectedConditions.visibilityOf(
+                        loggedInText));
 
-        return driver.getPageSource().contains("Logged in as");
+        return loggedInText.isDisplayed();
     }
+
     public void logout() {
 
-        logout.click();
-    }
+        JavascriptExecutor js =
+                (JavascriptExecutor) driver;
 
-    
+        js.executeScript(
+                "window.scrollBy(0,-500)");
+
+        js.executeScript(
+                "arguments[0].click();",
+                logout);
+    }
 }
