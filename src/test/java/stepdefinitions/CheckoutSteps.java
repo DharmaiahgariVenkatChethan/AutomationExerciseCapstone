@@ -12,10 +12,12 @@ import base.BaseClass;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.CartPage;
+import pages.CheckoutPage;
 
 public class CheckoutSteps extends BaseClass {
 
     CartPage cart;
+    CheckoutPage checkout;
 
     @When("user clicks proceed to checkout")
     public void user_clicks_proceed_to_checkout() {
@@ -81,23 +83,32 @@ public class CheckoutSteps extends BaseClass {
 
         commentBox.sendKeys("Order placed successfully");
 
-        driver.findElement(
-                By.xpath("//a[contains(text(),'Place Order')]"))
-                .click();
+        checkout = new CheckoutPage(driver);
+
+        checkout.placeOrder();
     }
 
     @Then("order should place successfully")
     public void order_should_place_successfully() {
 
-        WebDriverWait wait =
-                new WebDriverWait(driver,
-                        Duration.ofSeconds(10));
-
-        wait.until(
-                ExpectedConditions.urlContains("payment"));
+        String text = driver.getPageSource();
 
         Assert.assertTrue(
-                driver.getCurrentUrl()
-                        .contains("payment"));
+                text.contains("Order Placed!"));
+    }
+    @When("user enters payment details")
+    public void user_enters_payment_details() {
+
+        checkout = new CheckoutPage(driver);
+
+        checkout.enterPaymentDetails();
+    }
+
+    @When("user clicks pay and confirm order")
+    public void user_clicks_pay_and_confirm_order() {
+
+        checkout = new CheckoutPage(driver);
+
+        checkout.clickPayAndConfirmOrder();
     }
 }

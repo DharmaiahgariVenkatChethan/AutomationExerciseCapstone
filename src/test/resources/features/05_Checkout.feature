@@ -37,12 +37,13 @@ Then order review should display
 
 
 Scenario: Place order successfully
-
 When user clicks on Products button
 And user adds product to cart
 And user clicks on Cart button
 And user proceeds to checkout
 And user completes checkout process
+And user enters payment details
+And user clicks pay and confirm order
 Then order should place successfully
 And user clicks logout button
 Then login page should display

@@ -41,8 +41,7 @@ public class HomePage {
 
     public void clickProducts() {
 
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
 
         js.executeScript(
                 "arguments[0].click();",
