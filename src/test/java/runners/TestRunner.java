@@ -19,8 +19,8 @@ plugin = {
 "json:target/cucumber.json"
 },
 
-monochrome = true,
-tags="@checkout"
+monochrome = true
+
 
 
 

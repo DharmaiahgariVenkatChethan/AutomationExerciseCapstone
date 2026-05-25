@@ -1,4 +1,4 @@
-@signup
+
 Feature: Signup Module
 
 Scenario: Register user with valid details
